@@ -34,6 +34,7 @@
 
     <build>
         <plugins>
+            <!-- 部署生成发布文件保存在本地指定路径 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-deploy-plugin</artifactId>
@@ -42,6 +43,7 @@
                     <altDeploymentRepository>internal.repo::default::file://${project.build.directory}/maven-repository</altDeploymentRepository>
                 </configuration>
             </plugin>
+            <!-- 部署自动发布到github的maven仓库 -->
             <plugin>
                 <groupId>com.github.github</groupId>
                 <artifactId>site-maven-plugin</artifactId>
@@ -63,6 +65,23 @@
                             <goal>site</goal>
                         </goals>
                         <phase>deploy</phase>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- 添加maven使项目能打成jar,包含依赖包 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.2.4</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <minimizeJar>true</minimizeJar> <!-- 自动将所有不使用的类排除 -->
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
