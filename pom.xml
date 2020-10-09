@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.wqp</groupId>
+    <artifactId>sunkernal-starter-parent</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+    <name>sunkernal starter parent project</name>
+
+    <properties>
+        <github.global.server>github</github.global.server>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.8.1</version>
+                <configuration>
+                    <altDeploymentRepository>internal.repo::default::file://${project.build.directory}/maven-repository</altDeploymentRepository>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.github.github</groupId>
+                <artifactId>site-maven-plugin</artifactId>
+                <version>0.12</version>
+                <configuration>
+                    <message>sunkernal starter parent release ${project.version}</message> <!-- git commit message -->
+                    <noJekyll>true</noJekyll> <!-- disable webpage processing -->
+                    <outputDirectory>${project.build.directory}/maven-repository</outputDirectory>
+                    <branch>refs/heads/sunkernal-starter-parent-${project.version}</branch> <!-- branch name -->
+                    <includes>
+                        <include>**/*</include>
+                    </includes>
+                    <repositoryName>sunkernal-starter-parent</repositoryName> <!-- 仓库名称-->
+                    <repositoryOwner>maven-repository</repositoryOwner> <!-- github用户名称-->
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>site</goal>
+                        </goals>
+                        <phase>deploy</phase>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
+
+
+
+
+
