@@ -26,7 +26,7 @@ First of all tell maven to deploy artifacts to a temporary staging location insi
     </plugin>
  </plugins>
 </build>
-Run mvn clean deploy. You¡¯ll see maven artifact is deployed your maven repository located in target/mvn-repo.
+Run mvn clean deploy. Youï¿½ï¿½ll see maven artifact is deployed your maven repository located in target/mvn-repo.
 
 Secondly we have to upload the created artifact to github. In order to do that add your authentication information to ~/.m2/settings.xml so then the github site-maven-plugin can push to github
 
@@ -99,5 +99,3 @@ When you need to use your uploaded artifact you have to do the following step. Y
 </repositories>
 Now you can refer your maven artifacts easily. I hope now you can expose your simple artifacts as you wish.
 ```
-
-# sunkernal-starter-parent
